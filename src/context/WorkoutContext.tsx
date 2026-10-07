@@ -1,14 +1,40 @@
 "use client";
 
+import type { Workout } from "@/types/workout";
 import { createContext, useContext, useReducer } from "react";
 
-const initialState = {
+interface WorkoutState {
+    todayPlan: Workout[];
+    savedWorkouts: Workout[];
+}
+
+type WorkoutAction =
+    | {
+          type: "ADD_TO_PLAN";
+          payload: Workout;
+      }
+    | {
+          type: "REMOVE_FROM_PLAN";
+          payload: number;
+      }
+    | {
+          type: "SAVE_WORKOUT";
+          payload: Workout;
+      }
+    | {
+          type: "REMOVE_SAVED_WORKOUT";
+          payload: number;
+      };
+
+const initialState: WorkoutState = {
     todayPlan: [],
     savedWorkouts: [],
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function workoutReducer(state: typeof initialState, action: any) {
+function workoutReducer(
+    state: WorkoutState,
+    action: WorkoutAction,
+): WorkoutState {
     switch (action.type) {
         case "ADD_TO_PLAN":
             if (
@@ -59,8 +85,12 @@ function workoutReducer(state: typeof initialState, action: any) {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const WorkoutContext = createContext<any>(null);
+interface WorkoutContextValue {
+    state: WorkoutState;
+    dispatch: React.Dispatch<WorkoutAction>;
+}
+
+const WorkoutContext = createContext<WorkoutContextValue | null>(null);
 
 export function WorkoutProvider({ children }: { children: React.ReactNode }) {
     const [state, dispatch] = useReducer(workoutReducer, initialState);
@@ -73,5 +103,11 @@ export function WorkoutProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useWorkout() {
-    return useContext(WorkoutContext);
+    const context = useContext(WorkoutContext);
+
+    if (!context) {
+        throw new Error("useWorkout must be used within a WorkoutProvider");
+    }
+
+    return context;
 }
