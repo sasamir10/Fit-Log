@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏋️ Fit Log
 
-## Getting Started
+> A modern workout library and workout planning application built with **Next.js, TypeScript, Tailwind CSS, and the App Router**.
 
-First, run the development server:
+Fit Log helps users discover workouts, explore detailed exercise information, filter workouts based on their preferences, save favorite workouts, and build a personalized workout plan for the day.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The project was developed based on a **Figma UI design** and focuses on modern frontend architecture, reusable components, API integration, client-side state management, responsive design, and a smooth user experience.
+
+---
+
+## 🚀 Live Demo
+
+🔗 **[View Live Application](https://fit-log-phi-next.vercel.app/)**
+
+---
+
+## 📸 Project Overview
+
+Fit Log provides a complete workout discovery and planning experience with:
+
+- 🏠 Modern landing page
+- 🏋️ Workout library
+- 🔎 Workout search
+- 🎯 Difficulty filtering
+- 💪 Muscle-group filtering
+- 📋 Dynamic workout details
+- ➕ Add workouts to today's plan
+- 🔖 Save favorite workouts
+- 📅 Personalized "My Plan" page
+- ⚡ Toast notifications
+- 📱 Responsive design
+- 🔄 Loading and error states
+
+---
+
+## ✨ Key Features
+
+### 🏠 Home Page
+
+A modern landing page introducing the application with:
+
+- Clear call-to-action sections
+- Featured workouts
+- Quick navigation to the workout library
+- Responsive layout
+
+### 🏋️ Workout Library
+
+Users can browse available workouts retrieved from an external API.
+
+Features include:
+
+- Workout cards
+- Search by workout name
+- Filter by difficulty
+- Filter by muscle group
+- Combined filtering
+- Clear filters
+- No-results state
+
+### 📖 Workout Details
+
+Each workout has a dedicated dynamic route.
+
+Users can view:
+
+- Workout image
+- Workout name
+- Difficulty level
+- Rating
+- Duration
+- Calories burned
+- Sets
+- Repetitions
+- Equipment
+- Target muscle groups
+- Step-by-step instructions
+
+Example:
+
+```text
+/workouts/1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+src/
+├── app/
+│   ├── workouts/
+│   │   └── [id]/
+│   │       └── page.tsx
+│   ├── my-plan/
+│   │   └── page.tsx
+│   ├── saved/
+│   │   └── page.tsx
+│   ├── error.tsx
+│   ├── loading.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+│
+├── components/
+│   ├── layout/
+│   │   └── Navbar.tsx
+│   └── workout/
+│       ├── WorkoutActions.tsx
+│       ├── WorkoutCard.tsx
+│       ├── WorkoutLibrary.tsx
+│       ├── WorkoutList.tsx
+│       └── WorkoutSearch.tsx
+│
+├── context/
+│   └── WorkoutContext.tsx
+│
+├── lib/
+│   ├── api.ts
+│   └── utils.ts
+│
+└── types/
+    └── workout.ts
+```
