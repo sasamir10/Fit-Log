@@ -19,18 +19,20 @@ export default async function WorkoutDetailsPage({
         <main className="min-h-screen bg-[#111111] px-6 py-12">
             <div className="mx-auto max-w-6xl">
                 <Link
-                    href="/"
-                    className="mb-8 inline-block text-sm text-lime-400 hover:text-lime-300"
+                    href="/workouts"
+                    className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition hover:text-lime-400"
                 >
-                    ← Back to workouts
+                    <span>←</span>
+                    Back to workouts
                 </Link>
 
                 <div className="grid gap-10 lg:grid-cols-2">
-                    <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+                    <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-white/10">
                         <Image
                             src={workout.image}
                             alt={workout.name}
                             fill
+                            priority
                             className="object-cover"
                         />
                     </div>
@@ -55,7 +57,7 @@ export default async function WorkoutDetailsPage({
                         </p>
 
                         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                            <div className="rounded-xl bg-[#1a1a1a] p-4">
+                            <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
                                 <p className="text-xs text-gray-500">
                                     Duration
                                 </p>
@@ -64,7 +66,7 @@ export default async function WorkoutDetailsPage({
                                 </p>
                             </div>
 
-                            <div className="rounded-xl bg-[#1a1a1a] p-4">
+                            <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
                                 <p className="text-xs text-gray-500">
                                     Calories
                                 </p>
@@ -73,14 +75,14 @@ export default async function WorkoutDetailsPage({
                                 </p>
                             </div>
 
-                            <div className="rounded-xl bg-[#1a1a1a] p-4">
+                            <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
                                 <p className="text-xs text-gray-500">Sets</p>
                                 <p className="mt-1 font-semibold text-white">
                                     {workout.sets}
                                 </p>
                             </div>
 
-                            <div className="rounded-xl bg-[#1a1a1a] p-4">
+                            <div className="rounded-xl border border-white/10 bg-[#1a1a1a] p-4">
                                 <p className="text-xs text-gray-500">Reps</p>
                                 <p className="mt-1 font-semibold text-white">
                                     {workout.reps}
@@ -122,11 +124,11 @@ export default async function WorkoutDetailsPage({
                         Instructions
                     </h2>
 
-                    <ol className="mt-6 space-y-4">
+                    <ol className="mt-6 grid gap-4 md:grid-cols-2">
                         {workout.instructions.map((instruction, index) => (
                             <li
                                 key={instruction}
-                                className="flex gap-4 rounded-xl bg-[#1a1a1a] p-5"
+                                className="flex gap-4 rounded-xl border border-white/10 bg-[#1a1a1a] p-5"
                             >
                                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lime-400 text-sm font-bold text-black">
                                     {index + 1}

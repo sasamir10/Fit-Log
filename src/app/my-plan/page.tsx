@@ -1,6 +1,8 @@
 "use client";
 
 import { useWorkout } from "@/context/WorkoutContext";
+import Image from "next/image";
+import Link from "next/link";
 import { toast } from "sonner";
 
 export default function MyPlanPage() {
@@ -28,41 +30,73 @@ export default function MyPlanPage() {
                         <p className="text-lg text-gray-400">
                             No workouts added to your plan yet.
                         </p>
+
+                        <Link
+                            href="/workouts"
+                            className="mt-5 inline-flex rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black transition hover:bg-lime-300"
+                        >
+                            Explore Workouts
+                        </Link>
                     </div>
                 ) : (
-                    <div className="space-y-4">
+                    <div className="grid gap-6 md:grid-cols-2">
                         {state.todayPlan.map((workout) => (
-                            <div
+                            <article
                                 key={workout.id}
-                                className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#1a1a1a] p-5"
+                                className="overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a1a]"
                             >
-                                <div>
+                                <div className="relative aspect-video">
+                                    <Image
+                                        src={workout.image}
+                                        alt={workout.name}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+
+                                <div className="p-5">
                                     <h2 className="text-xl font-semibold text-white">
                                         {workout.name}
                                     </h2>
 
-                                    <p className="mt-2 text-sm text-gray-400">
-                                        {workout.duration} min ·{" "}
-                                        {workout.difficulty}
-                                    </p>
+                                    <div className="mt-3 flex flex-wrap gap-3 text-sm text-gray-400">
+                                        <span>{workout.duration} min</span>
+
+                                        <span>•</span>
+
+                                        <span>{workout.difficulty}</span>
+
+                                        <span>•</span>
+
+                                        <span>{workout.sets} sets</span>
+                                    </div>
+
+                                    <div className="mt-5 flex flex-wrap gap-3">
+                                        <Link
+                                            href={`/workouts/${workout.id}`}
+                                            className="rounded-xl border border-white/10 px-4 py-2 text-sm font-medium text-white transition hover:border-lime-400/40 hover:text-lime-400"
+                                        >
+                                            View Details
+                                        </Link>
+
+                                        <button
+                                            onClick={() => {
+                                                dispatch({
+                                                    type: "REMOVE_FROM_PLAN",
+                                                    payload: workout.id,
+                                                });
+
+                                                toast.success(
+                                                    "Workout removed from today's plan",
+                                                );
+                                            }}
+                                            className="rounded-xl border border-red-400/30 px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-400/10"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
                                 </div>
-
-                                <button
-                                    onClick={() => {
-                                        dispatch({
-                                            type: "REMOVE_FROM_PLAN",
-                                            payload: workout.id,
-                                        });
-
-                                        toast.success(
-                                            "Workout removed from today's plan",
-                                        );
-                                    }}
-                                    className="rounded-lg border border-red-400/30 px-4 py-2 text-sm font-medium text-red-400 transition hover:bg-red-400/10"
-                                >
-                                    Remove
-                                </button>
-                            </div>
+                            </article>
                         ))}
                     </div>
                 )}

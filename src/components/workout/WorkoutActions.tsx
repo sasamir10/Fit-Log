@@ -48,17 +48,17 @@ export default function WorkoutActions({ workout }: WorkoutActionsProps) {
     };
 
     return (
-        <div className="mt-8 flex flex-wrap gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <button
                 onClick={handleAddToPlan}
-                className="rounded-lg bg-lime-400 px-5 py-3 font-semibold text-black transition hover:bg-lime-300"
+                className="rounded-xl bg-lime-400 px-6 py-3 font-semibold text-black transition hover:bg-lime-300"
             >
-                Add to Todays Plan
+                Add to Today&apos;s Plan
             </button>
 
             <button
                 onClick={handleSaveWorkout}
-                className="rounded-lg border border-white/20 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
+                className="rounded-xl border border-white/10 bg-[#1a1a1a] px-6 py-3 font-semibold text-white transition hover:border-lime-400/40 hover:text-lime-400"
             >
                 Save Workout
             </button>
