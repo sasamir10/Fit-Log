@@ -1,4 +1,4 @@
-import WorkoutList from "@/components/workout/WorkoutList";
+import WorkoutLibrary from "@/components/workout/WorkoutLibrary";
 import { getWorkouts } from "@/lib/api";
 
 export default async function WorkoutsPage() {
@@ -22,7 +22,7 @@ export default async function WorkoutsPage() {
                     </p>
                 </div>
 
-                <WorkoutList workouts={workouts} />
+                <WorkoutLibrary workouts={workouts} />
             </div>
         </main>
     );
