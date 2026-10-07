@@ -1,7 +1,9 @@
 import Navbar from "@/components/layout/Navbar";
+import { WorkoutProvider } from "@/context/WorkoutContext";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
@@ -19,8 +21,11 @@ export default function RootLayout({
     return (
         <html lang="en" className={cn("font-sans", geist.variable)}>
             <body>
-                <Navbar />
-                {children}
+                <WorkoutProvider>
+                    <Navbar />
+                    {children}
+                    <Toaster position="bottom-right" />
+                </WorkoutProvider>
             </body>
         </html>
     );

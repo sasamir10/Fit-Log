@@ -1,3 +1,4 @@
+import WorkoutActions from "@/components/workout/WorkoutActions";
 import { getWorkout } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
@@ -111,6 +112,8 @@ export default async function WorkoutDetailsPage({
                                 ))}
                             </div>
                         </div>
+
+                        <WorkoutActions workout={workout} />
                     </div>
                 </div>
 
